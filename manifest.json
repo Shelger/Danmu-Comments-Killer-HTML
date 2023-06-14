@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Sensitive Content Remover",
+    "version": "1.0",
+    "description": "Removes sensitive contents from web pages starting with www.bilibili.com",
+    "permissions": ["activeTab"],
+    "background": {
+      "scripts": ["background.js"]
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://www.bilibili.com/*"],
+        "js": ["content.js"]
+      }
+    ]
+  }
