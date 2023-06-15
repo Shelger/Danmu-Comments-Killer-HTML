@@ -12,7 +12,26 @@ function removeSensitiveComments() {
         })
     });
 }
-console.log('running!')
-const observer = new MutationObserver(removeSensitiveComments);
+
+function removeSensitiveDanmu() {
+    const spanElements = document.querySelectorAll('.dm-info-dm'); // Select all span.dm-info-dm elements within li
+    spanElements.forEach(span => {
+        sensitiveWords.forEach(word => {
+            if (span.innerText.includes(word)) {
+                console.log("Remove " + word)
+                let blockButton = span.parentNode.querySelector('.dm-info-block-btn');
+                if (blockButton) blockButton.click(); 
+            }
+        })
+    });
+}
+
+function removeSensitiveContent() {
+    removeSensitiveComments();
+    removeSensitiveDanmu();
+}
+
+console.log('running!');
+const observer = new MutationObserver(removeSensitiveContent);
 // Call the function when the page loads
 observer.observe(document, { childList: true, subtree: true });
